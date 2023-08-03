@@ -1,4 +1,4 @@
-# SimpleChat
+# SimpleChat 🔥
 
 Welcome to the SimpleChat Repository!
 
