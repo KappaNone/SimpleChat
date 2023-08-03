@@ -1,0 +1,119 @@
+* {
+  font-family: "REM", sans-serif;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.container .login-card {
+  position: relative;
+  top: 10%;
+  color: #F0F0F0;
+  width: 300px;
+  height: 325px;
+  background-color: #333;
+  padding: 20px;
+  border-radius: 15px;
+  font-weight: 800;
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.container .login-card .header {
+  line-height: 20px;
+}
+.container .login-card .header .simple {
+  color: #F3AA60;
+}
+.container .login-card .header .chat {
+  color: #EF6262;
+}
+.container .login-card .header .discription {
+  line-height: 10px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.container .login-card .inputs {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  font-size: 14px;
+}
+.container .login-card .inputs input {
+  background-color: #F0F0F0;
+  border: 0;
+  border-radius: 5px;
+  height: 30px;
+  color: #333;
+  font-weight: 500;
+  padding: 0 15px;
+}
+.container .login-card .inputs input:focus {
+  outline-color: #333;
+  outline-width: 1px;
+}
+.container .login-card .inputs .username-input,
+.container .login-card .inputs .roomId-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 52px;
+  margin: 6px 0;
+}
+.container .buttons {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 10px;
+  align-items: center;
+}
+.container .buttons button {
+  width: 100%;
+  border: none;
+  margin: 10px 0;
+  height: 30px;
+  border-radius: 3px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.1s;
+}
+.container .buttons .createRoom-button {
+  background-color: #EF6262;
+  color: #F0F0F0;
+}
+.container .buttons .createRoom-button:hover {
+  width: 97%;
+}
+.container .buttons .joinRoom-button {
+  background-color: #F3AA60;
+  color: #333;
+}
+.container .buttons .joinRoom-button:hover {
+  width: 97%;
+}
+
+.madeBy {
+  font-size: 10px;
+  font-weight: 500;
+}
+.madeBy a {
+  color: #F0F0F0;
+  text-decoration: none;
+}
+.madeBy a:hover {
+  text-decoration: underline;
+}
+.madeBy a .kappa {
+  color: #F3AA60;
+}
+.madeBy a .none {
+  color: #EF6262;
+}
+
+/*# sourceMappingURL=Login.css.map */

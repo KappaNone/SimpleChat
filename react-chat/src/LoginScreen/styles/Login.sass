@@ -1,0 +1,101 @@
+*
+  font-family: 'REM', sans-serif
+
+
+.container
+  width: 100vw
+  height: 100vh
+
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  align-items: center
+
+  .login-card
+    position: relative
+    top: 10%
+    color: #F0F0F0
+    width: 300px
+    height: 325px
+    background-color: #333
+    padding: 20px
+    border-radius: 15px
+    font-weight: 800
+    font-size: 25px
+
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    .header
+      line-height: 20px
+      .simple
+        color: #F3AA60
+      .chat
+        color: #EF6262
+      .discription
+        line-height: 10px
+        font-size: 15px
+        font-weight: 500
+    .inputs
+      display: flex
+      flex-direction: column
+      font-weight: 500
+      font-size: 14px
+      input
+        background-color: #F0F0F0
+        border: 0
+        border-radius: 5px
+        height: 30px
+        color: #333
+        font-weight: 500
+        padding: 0 15px
+        &:focus
+          outline-color: #333
+          outline-width: 1px
+      .username-input,
+      .roomId-input
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        height:52px
+        margin: 6px 0
+  .buttons
+    display: flex
+    flex-direction: column
+    text-align: center
+    font-size: 10px
+    align-items: center
+    button
+      width: 100%
+      border: none
+      margin: 10px 0
+      height: 30px
+      border-radius: 3px
+      font-size: 15px
+      font-weight: 600
+      transition: all .1s
+    .createRoom-button
+      background-color: #EF6262
+      color: #F0F0F0  
+      &:hover
+        width: 97%
+    .joinRoom-button
+      background-color: #F3AA60
+      color: #333
+      &:hover
+        width: 97%
+
+
+.madeBy
+  font-size: 10px
+  font-weight: 500
+  a
+    color: #F0F0F0
+    text-decoration: none
+    &:hover
+      text-decoration: underline
+    .kappa
+      color: #F3AA60
+    .none
+      color: #EF6262
+    
