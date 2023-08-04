@@ -5,7 +5,7 @@ import { useLocation } from 'wouter';
 import { createdRoomKeyAtom, userNameAtom, usersInRoomAtom, } from '../Atoms';
 import { useAtom } from 'jotai';
 import { useState } from 'react';
-const socket = io('http://localhost:5000');
+const socket = io('https://simple-chat-server-shrq.onrender.com');
 
 function JoinChat() {
   const [roomId, setRoomId] = useAtom(createdRoomKeyAtom);

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import './styles/Chat.css'
 import toast, { Toaster } from 'react-hot-toast';
 
-const socket = io.connect('http://localhost:5000');
+const socket = io.connect('https://simple-chat-server-shrq.onrender.com');
 
 function Chat({ roomId }) {
   const [usersInRoom, setUsersInRoom] = useAtom(usersInRoomAtom)

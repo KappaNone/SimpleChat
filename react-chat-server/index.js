@@ -30,7 +30,7 @@ io.on('connection', (socket) => {
     for (let i = 0; i < keyLength; i++) {
       key += characters.charAt(Math.floor(Math.random() * characters.length));
     }
-    return key.toString();
+    return key;
   };
   const removeEmptyRooms = () => {
     for (const roomKey in rooms) {
