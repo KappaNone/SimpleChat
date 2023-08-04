@@ -15,7 +15,7 @@
   margin: 20px;
 }
 
-@media (max-height: 610px) {
+@media (max-height: 590px) {
   .userList {
     display: none;
   }
