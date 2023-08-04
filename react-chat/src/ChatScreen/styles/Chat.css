@@ -15,6 +15,11 @@
   margin: 20px;
 }
 
+@media (max-height: 610px) {
+  .userList {
+    display: none;
+  }
+}
 .chat-container {
   height: 100vh;
   display: flex;
@@ -49,39 +54,33 @@
 .chat-container .chat-card .chat .messages {
   margin: 15px;
 }
-
-@media (max-height: 630px) {
-  .userList {
-    display: none;
-  }
-  .userList .chat-input {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .userList .chat-input input {
-    color: #333;
-    width: 80%;
-    height: 40px;
-    border: none;
-    border-radius: 15px;
-    font-size: 17px;
-    font-weight: 500;
-    background-color: #F0F0F0;
-  }
-  .userList .chat-input .sendMessage-button {
-    width: 40px;
-    height: 40px;
-    border: 4px solid #EF6262;
-    background-color: #F3AA60;
-    border-radius: 50%;
-    transition: all 0.1s ease-in-out;
-  }
-  .userList .chat-input .sendMessage-button:hover {
-    border-width: 7px;
-    scale: 1.1;
-  }
+.chat-container .chat-card .chat-input {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.chat-container .chat-card .chat-input input {
+  color: #333;
+  width: 80%;
+  height: 40px;
+  border: none;
+  border-radius: 15px;
+  font-size: 17px;
+  font-weight: 500;
+  background-color: #F0F0F0;
+}
+.chat-container .chat-card .chat-input .sendMessage-button {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #EF6262;
+  background-color: #F3AA60;
+  border-radius: 50%;
+  transition: all 0.1s ease-in-out;
+}
+.chat-container .chat-card .chat-input .sendMessage-button:hover {
+  border-width: 7px;
+  scale: 1.1;
 }
 
 /*# sourceMappingURL=Chat.css.map */
