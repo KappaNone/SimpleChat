@@ -51,6 +51,7 @@ io.on('connection', (socket) => {
     const newRoom = {
       key: roomKey,
       users: [data.userName],
+      visibility: data.visibility
     };
 
 
@@ -60,6 +61,7 @@ io.on('connection', (socket) => {
 
     socket.emit('roomCreated', { key: roomKey, userName: data.userName });
     console.log('Room created:', roomKey);
+    io.emit('updateRooms', { rooms })
   });
 
   socket.on('joinRoom', (data) => {
@@ -77,17 +79,23 @@ io.on('connection', (socket) => {
       io.emit('userJoined', { roomUsers: room.users, roomId: key, joinedUser: data.userName });
       console.log('Room found: ')
       console.log(room)
+      io.emit('updateRooms', { rooms })
     } else {
       socket.emit('roomNotFound', { message: 'Chat not found' });
       console.log(`Room ${key} not found`)
     }
+    
   });
 
   socket.on('message', (data) => {
     console.log('Message received:', data);
     io.emit('message', data);
-    console.log(rooms)
+    console.log(rooms);
   });
+
+  socket.on('updateRooms', () => {
+    socket.emit('updateRooms', { rooms })
+  })
 
   socket.on('disconectUser', (data) => {
     const room = rooms[data.roomId]
@@ -99,14 +107,15 @@ io.on('connection', (socket) => {
         room.users.splice(disconectedUserIndex, 1)
         io.emit('userDisconected', { roomUsers: room.users, roomId: data.roomId, disconectedUser: data.disconectedUser });
       }
+      removeEmptyRooms()
+      io.emit('updateRooms', { rooms })
     }
 
-    removeEmptyRooms()
     console.log(rooms)
   });
 
   socket.on('disconnect', () => {
-    console.log('User left room');
+    console.log(rooms)
   });
 });
 
