@@ -106,6 +106,11 @@ function Chat({ roomId }) {
               type="text"
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  sendMessage();
+                }
+              }}
             />
             <button className='sendMessage-button' onClick={sendMessage}></button>
           </div>
