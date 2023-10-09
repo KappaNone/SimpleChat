@@ -78,7 +78,7 @@ const Main = () => {
           </button>
           OR
           <Link href="/joinChat">
-            <button className="secondary-button">Join a Chat</button>
+            <button className="secondary-button">Join Chat</button>
           </Link>
           <Link href="/rooms">
             <button className="secondary-button">Rooms</button>
