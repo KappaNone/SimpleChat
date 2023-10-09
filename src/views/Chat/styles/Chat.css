@@ -1,0 +1,108 @@
+.leftSide {
+  display: flex;
+  flex-direction: column;
+  height: 95vh;
+  justify-content: space-between;
+  color: #F3AA60;
+}
+.leftSide .chatID {
+  color: #555;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+}
+.leftSide .userList {
+  margin: 20px;
+}
+
+.chat-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15vh;
+}
+.chat-container .chat-card {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
+  position: absolute;
+  top: 10%;
+  padding: 20px;
+  background-color: #333;
+  width: 270px;
+  height: 400px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.chat-container .chat-card .chat {
+  border-radius: 20px;
+  background-color: #111;
+  width: 100%;
+  height: 85%;
+  word-wrap: break-word;
+  overflow: scroll;
+}
+.chat-container .chat-card .chat::-webkit-scrollbar {
+  display: none;
+}
+.chat-container .chat-card .chat .messages {
+  margin: 15px;
+}
+.chat-container .chat-card .chat .messages .message {
+  background-color: #222;
+  display: flex;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  justify-content: space-between;
+  align-items: center;
+}
+.chat-container .chat-card .chat .messages .message .message-left-side {
+  overflow: scroll;
+}
+.chat-container .chat-card .chat .messages .message .message-left-side::-webkit-scrollbar {
+  display: none;
+}
+.chat-container .chat-card .chat .messages .message .message-right-side {
+  margin: 5px;
+  font-size: 10px;
+  align-self: flex-end;
+  background-color: #333;
+  padding: 2px;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 4px;
+}
+.chat-container .chat-card .chat-input {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.chat-container .chat-card .chat-input input {
+  color: #333;
+  width: 80%;
+  height: 40px;
+  border: none;
+  border-radius: 15px;
+  font-size: 17px;
+  font-weight: 500;
+  background-color: #F0F0F0;
+}
+.chat-container .chat-card .chat-input .sendMessage-button {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #EF6262;
+  background-color: #F3AA60;
+  border-radius: 50%;
+  transition: all 0.1s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px;
+}
+.chat-container .chat-card .chat-input .sendMessage-button:hover {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 5px;
+  border-width: 7px;
+  scale: 1.1;
+}
+
+/*# sourceMappingURL=Chat.css.map */

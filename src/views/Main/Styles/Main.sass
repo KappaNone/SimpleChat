@@ -1,0 +1,185 @@
+$primary: #EF6262
+$primary-light: #F3AA60
+$gray: #9A9999
+
+.container
+  width: 100vw
+  height: 100vh
+
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  align-items: center
+
+  .login-card
+    position: relative
+    top: 10%
+    color: #F0F0F0
+    width: 300px
+    height: 325px
+    background-color: #333
+    padding: 20px
+    border-radius: 15px
+    font-weight: 800
+    font-size: 25px
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 4px
+    .header
+      line-height: 20px
+      .simple
+        color: #F3AA60
+        text-shadow:0px 0px 5px rgba(243, 170, 96, 0.1), 0px 0px 5px rgba(243, 170, 96, 0.4)
+      .chat
+        color: #EF6262
+        text-shadow:0px 0px 5px rgba(239, 98, 98, 0.1), 0px 0px 5px rgba(239, 98, 98, 0.4)
+      .discription
+        line-height: 10px
+        font-size: 15px
+        font-weight: 500
+    .inputs
+      display: flex
+      flex-direction: column
+      font-weight: 500
+      font-size: 14px
+      input
+        background-color: #F0F0F0
+        border: 0
+        border-radius: 5px
+        height: 30px
+        color: #333
+        font-weight: 500
+        padding: 0 15px
+        &:focus
+          outline-color: #333
+          outline-width: 1px
+      .username-input,
+      .roomId-input
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        height: 52px
+        margin: 6px 0
+  .buttons
+    display: flex
+    flex-direction: column
+    text-align: center
+    font-size: 10px
+    align-items: center
+    button
+      width: 100%
+      border: none
+      margin: 10px 0
+      height: 30px
+      border-radius: 3px
+      font-size: 15px
+      font-weight: 600
+      transition: all .1s
+    .createRoom-button
+      background-color: #EF6262
+      color: #F0F0F0
+      &:hover
+        width: 97%
+    .secondary-button
+      background-color: #F3AA60
+      color: #333
+      &:hover
+        width: 97%
+        
+.madeBy
+  font-size: 10px
+  font-weight: 500
+  
+  a
+    color: #F0F0F0
+    text-decoration: none
+    &:hover
+      text-decoration: underline
+
+    .kappa
+      color: #F3AA60
+    .none
+      color: #EF6262
+.rooms-card
+  position: relative
+  top: 10%
+  color: #F0F0F0
+  width: 300px
+  max-height: 325px
+  background-color: #333
+  padding: 5px 20px 0px 20px
+  border-radius: 15px
+  font-weight: 800
+  font-size: 25px
+  margin-bottom: 35px
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 4px
+  overflow: scroll
+  &::-webkit-scrollbar
+    width: 0
+  .rooms-header
+    background-color: #333
+    margin: 10px
+    font-size: 30px
+
+
+.checkBox-container
+  margin-top: 7px
+  display: flex
+  justify-content: space-between
+  width: 90px
+  .toggle
+    position: relative
+    display: block
+    width: 40px
+    height: 20px
+    cursor: pointer
+    -webkit-tap-highlight-color: transparent
+    transform: translate3d(0,0,0)
+    &:before
+      content: ""
+      position: relative
+      top: 3px
+      left: 3px
+      width: 34px
+      height: 14px
+      display: block
+      background: $gray
+      border-radius: 8px
+      transition: background .2s ease
+    span
+      position: absolute
+      top: 0
+      left: 0
+      width: 20px
+      height: 20px
+      display: block
+      background: white
+      border-radius: 10px
+      box-shadow: 0 3px 8px rgba($gray,.5)
+      transition: all .2s ease
+      &:before
+        content: ""
+        position: absolute
+        display: block
+        margin: -18px
+        width: 56px
+        height: 56px
+        background: rgba($primary,.5)
+        border-radius: 50%
+        transform: scale(0)
+        opacity: 1
+        pointer-events: none
+
+#checkbox:checked + .toggle
+  &:before
+    background: $primary-light
+  span
+    background: $primary
+    transform: translateX(20px)
+    transition: all .2s cubic-bezier(.8,.4,.3,1.25), background .15s ease
+    box-shadow: 0 3px 8px rgba($primary,.2)
+    &:before
+      transform: scale(1)
+      opacity: 0
+      transition: all .4s ease
