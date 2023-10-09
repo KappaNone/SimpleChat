@@ -10,7 +10,8 @@
     "socket.io": "^4.7.2"
   },
   "scripts": {
-    "dev": "nodemon index.ts"
+    "dev": "nodemon index.ts",
+    "tsc": "tsc"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
