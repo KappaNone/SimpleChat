@@ -63,24 +63,8 @@ const Chat: React.FC<IProps> = ({ roomKey }) => {
     };
   }, [roomKey, setRoomKey, setError, setLocation, userName]);
 
-  // useEffect(() => {
-  //   function onBeforeUnload() {
-  //     const leaveRoomRequest: leaveRoomRequest = {
-  //       userName,
-  //       roomUsers,
-  //       roomKey,
-  //     };
-  //     socket.emit("leaveRoom", leaveRoomRequest);
-  //   }
-
-  //   window.addEventListener("beforeunload", onBeforeUnload);
-  //   return () => {
-  //     window.removeEventListener("beforeunload", onBeforeUnload);
-  //   };
-  // }, [roomKey, roomUsers, userName]);
-
   useEffect(() => {
-    if (location !== `/chat/${roomKey}`) {
+    function onBeforeUnload() {
       const leaveRoomRequest: leaveRoomRequest = {
         userName,
         roomUsers,
@@ -88,7 +72,12 @@ const Chat: React.FC<IProps> = ({ roomKey }) => {
       };
       socket.emit("leaveRoom", leaveRoomRequest);
     }
-  }, [location, roomKey, roomUsers, userName])
+
+    window.addEventListener("beforeunload", onBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", onBeforeUnload);
+    };
+  }, [roomKey, roomUsers, userName]);
 
   useEffect(() => {
     function onMessage(message: message) {
