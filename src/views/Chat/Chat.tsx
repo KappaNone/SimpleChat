@@ -26,7 +26,7 @@ interface IProps {
   roomKey: string;
 }
 
-const socket: Socket = io("http://localhost:5000");
+const socket: Socket = io("https://simple-chat-server-shrq.onrender.com");
 
 const Chat: React.FC<IProps> = ({ roomKey }) => {
   const [messages, setMessages] = useState<message[]>([]);

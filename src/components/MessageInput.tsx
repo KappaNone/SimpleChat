@@ -9,7 +9,7 @@ interface IProps {
 
 }
 
-const socket: Socket = io("http://localhost:5000");
+const socket: Socket = io("https://simple-chat-server-shrq.onrender.com");
 
 const MessageInput: React.FC<IProps> = ({ roomKey, userName }) => {
   const [inputMessage, setInputMessage] = useState("");
