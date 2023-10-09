@@ -34,7 +34,7 @@ const Chat: React.FC<IProps> = ({ roomKey }) => {
   const [roomUsers, setRoomUsers] = useAtom(usersInRoomAtom);
   const [, setRoomKey] = useAtom(roomKeyAtom);
   const [, setError] = useAtom(errorText);
-  const [location, setLocation] = useLocation();
+  const [, setLocation] = useLocation();
 
   useEffect(() => {
     socket.emit("join", roomKey);
