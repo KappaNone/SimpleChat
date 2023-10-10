@@ -1,8 +1,10 @@
 import { Route } from "wouter";
-import Main from "./views/Main/Main";
-import Rooms from "./views/Rooms/Rooms";
-import Chat from "./views/Chat/Chat";
-import JoinChat from "./views/JoinChat/JoinChat";
+
+import Main from "Main";
+import Rooms from "Rooms";
+import Chat from "Chat";
+import JoinChat from "JoinChat";
+
 const App = () => {
   return (
     <>

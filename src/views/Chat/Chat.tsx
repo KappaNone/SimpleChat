@@ -1,67 +1,67 @@
-import "./styles/Chat.css";
-import React, { useEffect, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
-import { Socket, io } from "socket.io-client";
-import { useAtom } from "jotai";
+import './styles/Chat.css'
+import React, { useEffect, useState } from 'react'
+import toast, { Toaster } from 'react-hot-toast'
+import { Socket, io } from 'socket.io-client'
+import { useAtom } from 'jotai'
 import {
   userNameAtom,
   usersInRoomAtom,
   roomKeyAtom,
   errorText,
-} from "../../Atoms";
-import { useLocation } from "wouter";
+} from 'atoms'
+import { useLocation } from 'wouter'
 import {
   message,
   joinRoomResponse,
   leaveRoomRequest,
   leaveRoomResponse,
   error,
-} from "../../../server/types";
+} from 'server/types'
 
-import Message from "../../components/Message";
-import MessageInput from "../../components/MessageInput";
-import RoomUser from "../../components/RoomUser";
+import Message from 'components/Message'
+import MessageInput from 'components/MessageInput'
+import RoomUser from 'components/RoomUser'
 
 interface IProps {
-  roomKey: string;
+  roomKey: string
 }
 
-const socket: Socket = io("https://simple-chat-server-shrq.onrender.com");
+const socket: Socket = io('http://localhost:5000')
 
 const Chat: React.FC<IProps> = ({ roomKey }) => {
-  const [messages, setMessages] = useState<message[]>([]);
-  const [userName] = useAtom(userNameAtom);
-  const [roomUsers, setRoomUsers] = useAtom(usersInRoomAtom);
-  const [, setRoomKey] = useAtom(roomKeyAtom);
-  const [, setError] = useAtom(errorText);
-  const [, setLocation] = useLocation();
+  const [messages, setMessages] = useState<message[]>([])
+  const [userName] = useAtom(userNameAtom)
+  const [roomUsers, setRoomUsers] = useAtom(usersInRoomAtom)
+  const [, setRoomKey] = useAtom(roomKeyAtom)
+  const [, setError] = useAtom(errorText)
+  const [, setLocation] = useLocation()
 
   useEffect(() => {
-    socket.emit("join", roomKey);
+    socket.emit('join', roomKey)
     return () => {
-      socket.emit("join", roomKey);
-    };
-  }, [roomKey]);
+      socket.emit('join', roomKey)
+    }
+  }, [roomKey])
 
   useEffect(() => {
     function onLoad() {
-      if (userName.trim() !== "") {
-        socket.emit("joinRoom", { roomKey, userName });
+      if (userName.trim() !== '') {
+        socket.emit('joinRoom', { roomKey, userName })
 
-        socket.on("roomNotFound", (error: error) => {
-          setError(error.message);
-          setLocation("/joinChat");
-        });
+        socket.on('roomNotFound', (error: error) => {
+          setError(error.message)
+          setLocation('/joinChat')
+        })
       } else {
-        setRoomKey(roomKey);
-        setLocation("/joinChat");
+        setRoomKey(roomKey)
+        setLocation('/joinChat')
       }
     }
-    window.addEventListener("load", onLoad);
+    window.addEventListener('load', onLoad)
     return () => {
-      window.removeEventListener("load", onLoad);
-    };
-  }, [roomKey, setRoomKey, setError, setLocation, userName]);
+      window.removeEventListener('load', onLoad)
+    }
+  }, [roomKey, setRoomKey, setError, setLocation, userName])
 
   useEffect(() => {
     function onBeforeUnload() {
@@ -69,57 +69,57 @@ const Chat: React.FC<IProps> = ({ roomKey }) => {
         userName,
         roomUsers,
         roomKey,
-      };
-      socket.emit("leaveRoom", leaveRoomRequest);
+      }
+      socket.emit('leaveRoom', leaveRoomRequest)
     }
 
-    window.addEventListener("beforeunload", onBeforeUnload);
+    window.addEventListener('beforeunload', onBeforeUnload)
     return () => {
-      window.removeEventListener("beforeunload", onBeforeUnload);
-    };
-  }, [roomKey, roomUsers, userName]);
+      window.removeEventListener('beforeunload', onBeforeUnload)
+    }
+  }, [roomKey, roomUsers, userName])
 
   useEffect(() => {
     function onMessage(message: message) {
-      setMessages((prevMessages) => [...prevMessages, message]);
+      setMessages((prevMessages) => [...prevMessages, message])
     }
 
     function onUserJoined(joinRoomResponse: joinRoomResponse) {
-      setRoomUsers(joinRoomResponse.roomUsers);
+      setRoomUsers(joinRoomResponse.roomUsers)
       toast(`User ${joinRoomResponse.joinedUser} joined!`, {
         duration: 4000,
-        position: "bottom-center",
-        style: { backgroundColor: "#333", color: "#F0F0F0" },
+        position: 'bottom-center',
+        style: { backgroundColor: '#333', color: '#F0F0F0' },
         ariaProps: {
-          role: "status",
-          "aria-live": "polite",
+          role: 'status',
+          'aria-live': 'polite',
         },
-      });
+      })
     }
 
     function onLeaveRoom(leaveRoomResponse: leaveRoomResponse) {
-      setRoomUsers(leaveRoomResponse.roomUsers);
+      setRoomUsers(leaveRoomResponse.roomUsers)
       toast(`User ${leaveRoomResponse.userName} disconected.`, {
         duration: 4000,
-        position: "bottom-center",
-        style: { backgroundColor: "#333", color: "#F0F0F0" },
+        position: 'bottom-center',
+        style: { backgroundColor: '#333', color: '#F0F0F0' },
         ariaProps: {
-          role: "status",
-          "aria-live": "polite",
+          role: 'status',
+          'aria-live': 'polite',
         },
-      });
+      })
     }
 
-    socket.on("message", onMessage);
-    socket.on("userJoined", onUserJoined);
-    socket.on("leaveRoom", onLeaveRoom);
+    socket.on('message', onMessage)
+    socket.on('userJoined', onUserJoined)
+    socket.on('leaveRoom', onLeaveRoom)
 
     return () => {
-      socket.off("message", onUserJoined);
-      socket.off("userJoined", onLeaveRoom);
-      socket.off("leaveRoom", onMessage);
-    };
-  }, [roomKey, setRoomUsers]);
+      socket.off('message', onUserJoined)
+      socket.off('userJoined', onLeaveRoom)
+      socket.off('leaveRoom', onMessage)
+    }
+  }, [roomKey, setRoomUsers])
 
   return (
     <>
@@ -146,14 +146,11 @@ const Chat: React.FC<IProps> = ({ roomKey }) => {
             </div>
           </div>
           <div className="chat-input">
-            <MessageInput
-              roomKey={roomKey}
-              userName={userName}
-            ></MessageInput>
+            <MessageInput roomKey={roomKey} userName={userName}></MessageInput>
           </div>
         </div>
       </div>
     </>
-  );
-};
-export default Chat;
+  )
+}
+export default Chat

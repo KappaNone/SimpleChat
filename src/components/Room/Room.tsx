@@ -1,21 +1,22 @@
-import "./Styles/Room.css";
-import React from "react";
-import { useAtom } from "jotai";
-import { useLocation } from "wouter";
-import { roomKeyAtom } from "../../Atoms";
+import './Styles/Room.css'
+import React from 'react'
+import { useAtom } from 'jotai'
+import { useLocation } from 'wouter'
+import { roomKeyAtom } from 'atoms'
+
 
 interface IProps {
-  roomKey: string;
-  amountOfUsers: number;
-  visibility: boolean;
+  roomKey: string
+  amountOfUsers: number
+  visibility: boolean
 }
 
 const Room: React.FC<IProps> = ({ roomKey, amountOfUsers, visibility }) => {
-  const [, setRoomKey] = useAtom(roomKeyAtom);
-  const [, setLocation] = useLocation();
+  const [, setRoomKey] = useAtom(roomKeyAtom)
+  const [, setLocation] = useLocation()
   function joinRoom() {
-    setRoomKey(roomKey);
-    setLocation("/joinChat");
+    setRoomKey(roomKey)
+    setLocation('/joinChat')
   }
 
   return (
@@ -29,6 +30,6 @@ const Room: React.FC<IProps> = ({ roomKey, amountOfUsers, visibility }) => {
         </div>
       )}
     </>
-  );
-};
-export default Room;
+  )
+}
+export default Room

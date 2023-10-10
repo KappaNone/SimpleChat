@@ -1,35 +1,35 @@
-import { Link, useLocation } from "wouter";
-import { useAtom } from "jotai";
-import { userNameAtom, roomKeyAtom, usersInRoomAtom } from "../../Atoms";
-import "./Styles/Main.css";
-import { Socket, io } from "socket.io-client";
-import { useState } from "react";
-import { createRoomRequest, createRoomResponse } from "../../../server/types";
+import { Link, useLocation } from 'wouter'
+import { useAtom } from 'jotai'
+import { roomKeyAtom, userNameAtom, usersInRoomAtom } from 'atoms'
+import './Styles/Main.css'
+import { Socket, io } from 'socket.io-client'
+import { useState } from 'react'
+import { createRoomRequest, createRoomResponse } from 'server/types'
 
-import MadeBy from "../../components/MadeBy";
+import MadeBy from 'components/MadeBy'
 
-const socket: Socket = io("https://simple-chat-server-shrq.onrender.com");
+const socket: Socket = io('http://localhost:5000')
 
 const Main = () => {
-  const [userName, setUserName] = useAtom(userNameAtom);
-  const [, setCreatedRoomKey] = useAtom(roomKeyAtom);
-  const [, setUsersInRoom] = useAtom(usersInRoomAtom);
-  const [roomVisibility, setRoomVisibility] = useState(false);
-  const [, setLocation] = useLocation();
+  const [userName, setUserName] = useAtom(userNameAtom)
+  const [, setCreatedRoomKey] = useAtom(roomKeyAtom)
+  const [, setUsersInRoom] = useAtom(usersInRoomAtom)
+  const [roomVisibility, setRoomVisibility] = useState(false)
+  const [, setLocation] = useLocation()
 
   function onRoomCreated(createRoomResponse: createRoomResponse) {
-    setCreatedRoomKey(createRoomResponse.roomKey);
-    setUsersInRoom([createRoomResponse.userName]);
-    setLocation(`/chat/${createRoomResponse.roomKey}`);
+    setCreatedRoomKey(createRoomResponse.roomKey)
+    setUsersInRoom([createRoomResponse.userName])
+    setLocation(`/chat/${createRoomResponse.roomKey}`)
   }
 
   const createRoom = () => {
-    const createRoomRequest: createRoomRequest = { userName, roomVisibility };
-    socket.emit("createRoom", createRoomRequest);
-    socket.on("roomCreated", onRoomCreated)
-  };
+    const createRoomRequest: createRoomRequest = { userName, roomVisibility }
+    socket.emit('createRoom', createRoomRequest)
+    socket.on('roomCreated', onRoomCreated)
+  }
 
-  const inputValidation = () => userName.trim() === "";
+  const inputValidation = () => userName.trim() === ''
 
   return (
     <div className="container">
@@ -56,7 +56,7 @@ const Main = () => {
               type="checkbox"
               id="checkbox"
               checked={roomVisibility}
-              style={{ display: "none" }}
+              style={{ display: 'none' }}
               onChange={() => null}
             />
             <label
@@ -65,7 +65,7 @@ const Main = () => {
             >
               <span></span>
             </label>
-            <span>{roomVisibility ? "Public" : "Private"}</span>
+            <span>{roomVisibility ? 'Public' : 'Private'}</span>
           </div>
         </div>
         <div className="buttons">
@@ -87,6 +87,6 @@ const Main = () => {
       </div>
       <MadeBy />
     </div>
-  );
-};
-export default Main;
+  )
+}
+export default Main

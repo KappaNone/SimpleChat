@@ -1,62 +1,58 @@
-import "../Main/Styles/Main.css";
+import '../Main/Styles/Main.css'
 
-import { Socket, io } from "socket.io-client";
-import { useAtom } from "jotai";
-import { useLocation } from "wouter";
+import { Socket, io } from 'socket.io-client'
+import { useAtom } from 'jotai'
+import { useLocation } from 'wouter'
 import {
   roomKeyAtom,
   userNameAtom,
   usersInRoomAtom,
   errorText,
-} from "../../Atoms";
-import {
-  joinRoomRequest,
-  joinRoomResponse,
-  error,
-} from "../../../server/types";
+} from 'atoms'
+import { joinRoomRequest, joinRoomResponse, error } from 'server/types'
 
-import MadeBy from "../../components/MadeBy";
+import MadeBy from 'components/MadeBy'
 
-const socket: Socket = io("https://simple-chat-server-shrq.onrender.com");
+const socket: Socket = io('http://localhost:5000')
 
 const JoinChat = () => {
-  const [roomKey, setRoomKey] = useAtom(roomKeyAtom);
-  const [userName, setUserName] = useAtom(userNameAtom);
-  const [, setUsersInRoom] = useAtom(usersInRoomAtom);
-  const [error, setError] = useAtom(errorText);
-  const [, setLocation] = useLocation();
+  const [roomKey, setRoomKey] = useAtom(roomKeyAtom)
+  const [userName, setUserName] = useAtom(userNameAtom)
+  const [, setUsersInRoom] = useAtom(usersInRoomAtom)
+  const [error, setError] = useAtom(errorText)
+  const [, setLocation] = useLocation()
 
   function onUserJoined(joinRoomResponse: joinRoomResponse) {
-    setUsersInRoom(joinRoomResponse.roomUsers);
-    setRoomKey(joinRoomResponse.roomKey);
-    setError("");
-    setLocation(`/chat/${roomKey}`);
+    setUsersInRoom(joinRoomResponse.roomUsers)
+    setRoomKey(joinRoomResponse.roomKey)
+    setError('')
+    setLocation(`/chat/${roomKey}`)
   }
 
   function onRoomNotFound(error: error) {
-    setError(error.message);
-    setUserName("");
-    setRoomKey("");
+    setError(error.message)
+    setUserName('')
+    setRoomKey('')
   }
 
   function joinRoom() {
     const joinRoomRequest: joinRoomRequest = {
       roomKey: roomKey,
       userName: userName,
-    };
+    }
 
-    socket.emit("joinRoom", joinRoomRequest);
-    socket.on("roomNotFound", onRoomNotFound);
-    socket.on("userJoined", onUserJoined);
+    socket.emit('joinRoom', joinRoomRequest)
+    socket.on('roomNotFound', onRoomNotFound)
+    socket.on('userJoined', onUserJoined)
   }
 
   const inputValidation = () => {
-    if (userName.trim() !== "" && roomKey.trim() !== "") return true;
-  };
+    if (userName.trim() !== '' && roomKey.trim() !== '') return true
+  }
 
   return (
     <div className="container">
-      <div className="login-card" style={{ height: "200px" }}>
+      <div className="login-card" style={{ height: '200px' }}>
         <div className="inputs" style={{}}>
           <div className="username-input">
             <span>Username</span>
@@ -77,7 +73,7 @@ const JoinChat = () => {
         </div>
         <div className="buttons">
           <div>
-            {" "}
+            {' '}
             {error} <br />
           </div>
           <button
@@ -91,7 +87,7 @@ const JoinChat = () => {
       </div>
       <MadeBy />
     </div>
-  );
-};
+  )
+}
 
-export default JoinChat;
+export default JoinChat

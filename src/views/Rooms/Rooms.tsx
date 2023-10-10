@@ -1,29 +1,28 @@
-import "../Main/Styles/Main.css";
-import { Socket, io } from "socket.io-client";
-import Room from "../../components/Room/Room";
-import { useEffect, useState } from "react";
-import { room } from "../../../server/types";
+import '../Main/Styles/Main.css'
+import { Socket, io } from 'socket.io-client'
 
-import MadeBy from "../../components/MadeBy";
+import { useEffect, useState } from 'react'
 
-const socket: Socket = io("https://simple-chat-server-shrq.onrender.com");
+import MadeBy from 'components/MadeBy'
+import Room from 'components/Room/Room'
+import { room } from 'server/types'
+
+const socket: Socket = io('http://localhost:5000')
 const Rooms = () => {
-  const [rooms, setRooms] = useState<room[]>([]);
-
-  
+  const [rooms, setRooms] = useState<room[]>([])
 
   useEffect(() => {
     function onUpdateRooms(rooms: room[]) {
-      console.log(rooms);
-      setRooms(rooms);
+      console.log(rooms)
+      setRooms(rooms)
     }
-    socket.emit("updateRooms");
-    socket.on("updateRooms", onUpdateRooms)
+    socket.emit('updateRooms')
+    socket.on('updateRooms', onUpdateRooms)
 
     return () => {
-      socket.off("updateRooms", onUpdateRooms);
-    };
-  }, []);
+      socket.off('updateRooms', onUpdateRooms)
+    }
+  }, [])
 
   return (
     <div className="container">
@@ -41,6 +40,6 @@ const Rooms = () => {
       </div>
       <MadeBy />
     </div>
-  );
-};
-export default Rooms;
+  )
+}
+export default Rooms

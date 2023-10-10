@@ -1,4 +1,4 @@
-import '../views/Main/Styles/Main.css'
+import 'views/Main/Styles/Main.css'
 
 const MadeBy: React.FC = () => {
   return (
@@ -9,6 +9,6 @@ const MadeBy: React.FC = () => {
         <span className="none">None</span>
       </a>
     </p>
-  );
-};
-export default MadeBy;
+  )
+}
+export default MadeBy

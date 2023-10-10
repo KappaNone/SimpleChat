@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react'
 
 interface IProps {
-  userName: string;
-  user: string;
+  userName: string
+  user: string
 }
 
 const RoomUser: React.FC<IProps> = ({ userName, user }) => {
@@ -11,6 +11,6 @@ const RoomUser: React.FC<IProps> = ({ userName, user }) => {
       {user === userName ? `${user} (you)` : user}
       <br />
     </div>
-  );
-};
-export default RoomUser;
+  )
+}
+export default RoomUser

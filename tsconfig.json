@@ -18,8 +18,25 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "removeComments": true,
+
+    /* Alias */
+    "baseUrl": "./src",
+    "paths": {
+      "views/*": ["views/*"],
+      "components/*": ["components/*"],
+      "server/*": ["../server/*"],
+      "atoms": ["Atoms"],
+
+      "Main": ["views/Main/Main"],
+      "Rooms": ["views/Rooms/Rooms"],
+      "Chat": ["views/Chat/Chat"],
+      "JoinChat": ["views/JoinChat/JoinChat"]
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
+
+// optimized imports
