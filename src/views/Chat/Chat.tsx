@@ -3,12 +3,7 @@ import React, { useEffect, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { Socket, io } from 'socket.io-client'
 import { useAtom } from 'jotai'
-import {
-  userNameAtom,
-  usersInRoomAtom,
-  roomKeyAtom,
-  errorText,
-} from 'atoms'
+import { userNameAtom, usersInRoomAtom, roomKeyAtom, errorText } from 'atoms'
 import { useLocation } from 'wouter'
 import {
   message,
@@ -115,9 +110,9 @@ const Chat: React.FC<IProps> = ({ roomKey }) => {
     socket.on('leaveRoom', onLeaveRoom)
 
     return () => {
-      socket.off('message', onUserJoined)
-      socket.off('userJoined', onLeaveRoom)
-      socket.off('leaveRoom', onMessage)
+      socket.off('message', onMessage)
+      socket.off('userJoined', onUserJoined)
+      socket.off('leaveRoom', onLeaveRoom)
     }
   }, [roomKey, setRoomUsers])
 
