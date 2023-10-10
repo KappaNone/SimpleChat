@@ -53,7 +53,7 @@ const JoinChat = () => {
   return (
     <div className="container">
       <div className="login-card" style={{ height: '200px' }}>
-        <div className="inputs" style={{}}>
+        <div className="inputs">
           <div className="username-input">
             <span>Username</span>
             <input
