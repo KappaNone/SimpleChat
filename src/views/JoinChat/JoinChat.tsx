@@ -3,17 +3,12 @@ import '../Main/Styles/Main.css'
 import { Socket, io } from 'socket.io-client'
 import { useAtom } from 'jotai'
 import { useLocation } from 'wouter'
-import {
-  roomKeyAtom,
-  userNameAtom,
-  usersInRoomAtom,
-  errorText,
-} from 'atoms'
+import { roomKeyAtom, userNameAtom, usersInRoomAtom, errorText } from 'atoms'
 import { joinRoomRequest, joinRoomResponse, error } from 'server/types'
 
 import MadeBy from 'components/MadeBy'
 
-const socket: Socket = io('http://localhost:5000')
+const socket: Socket = io('https://simple-chat-server-shrq.onrender.com')
 
 const JoinChat = () => {
   const [roomKey, setRoomKey] = useAtom(roomKeyAtom)

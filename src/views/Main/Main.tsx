@@ -8,7 +8,7 @@ import { createRoomRequest, createRoomResponse } from 'server/types'
 
 import MadeBy from 'components/MadeBy'
 
-const socket: Socket = io('http://localhost:5000')
+const socket: Socket = io('https://simple-chat-server-shrq.onrender.com')
 
 const Main = () => {
   const [userName, setUserName] = useAtom(userNameAtom)
