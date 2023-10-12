@@ -24,6 +24,6 @@ dist-ssr
 *.sw?
 
 # Custom
-.env
-.env.production
-.lock
+*.env
+*.env.production
+*.lock
