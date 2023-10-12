@@ -46,5 +46,4 @@ export interface message {
 
 export interface error {
   message: string
-  target: string
 }
