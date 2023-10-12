@@ -8,7 +8,9 @@ interface IProps {
   userName: string
 }
 
-const socket: Socket = io(import.meta.env.APP_SERVER_URL)
+
+import { serverUrl } from 'utils'
+const socket: Socket = io(serverUrl)
 
 const MessageInput: React.FC<IProps> = ({ roomKey, userName }) => {
   const [inputMessage, setInputMessage] = useState('')
