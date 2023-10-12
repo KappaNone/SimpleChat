@@ -9,7 +9,7 @@ interface IProps {
 }
 
 
-import { serverUrl } from 'utils'
+import { serverUrl } from './../Utils'
 const socket: Socket = io(serverUrl)
 
 const MessageInput: React.FC<IProps> = ({ roomKey, userName }) => {

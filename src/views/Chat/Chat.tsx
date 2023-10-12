@@ -21,7 +21,7 @@ interface IProps {
   roomKey: string
 }
 
-import { serverUrl } from 'utils'
+import { serverUrl } from './../../Utils'
 const socket: Socket = io(serverUrl)
 
 const Chat: React.FC<IProps> = ({ roomKey }) => {
