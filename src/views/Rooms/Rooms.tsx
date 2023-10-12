@@ -7,7 +7,7 @@ import MadeBy from 'components/MadeBy'
 import Room from 'components/Room/Room'
 import { room } from 'server/types'
 
-const socket: Socket = io(import.meta.env.APP_SERVER_URL)
+const socket: Socket = io('https://simple-chat-server-shrq.onrender.com')
 
 const Rooms = () => {
   const [rooms, setRooms] = useState<room[]>([])

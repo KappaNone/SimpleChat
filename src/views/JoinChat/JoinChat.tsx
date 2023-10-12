@@ -9,7 +9,7 @@ import { joinRoomRequest, joinRoomResponse, error } from 'server/types'
 import MadeBy from 'components/MadeBy'
 
 
-const socket: Socket = io(import.meta.env.APP_SERVER_URL)
+const socket: Socket = io('https://simple-chat-server-shrq.onrender.com')
 
 
 const JoinChat = () => {
