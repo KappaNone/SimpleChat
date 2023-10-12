@@ -20,7 +20,7 @@ interface IProps {
   roomKey: string
 }
 
-const socket: Socket = io('https://simple-chat-server-shrq.onrender.com')
+const socket: Socket = io(import.meta.env.APP_SERVER_URL)
 
 
 const Chat: React.FC<IProps> = ({ roomKey }) => {
