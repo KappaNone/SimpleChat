@@ -28,7 +28,6 @@ const JoinChat = () => {
 
   function onRoomNotFound(error: error) {
     setError(error.message)
-    setUserName('')
     setRoomKey('')
   }
 
