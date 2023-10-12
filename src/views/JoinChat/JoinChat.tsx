@@ -9,8 +9,8 @@ import { joinRoomRequest, joinRoomResponse, error } from 'server/types'
 import MadeBy from 'components/MadeBy'
 
 
-import { serverUrl } from 'utils'
-const socket: Socket = io(serverUrl)
+const socket: Socket = io(import.meta.env.APP_SERVER_URL)
+
 
 const JoinChat = () => {
   const [roomKey, setRoomKey] = useAtom(roomKeyAtom)

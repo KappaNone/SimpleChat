@@ -9,8 +9,8 @@ import { createRoomRequest, createRoomResponse } from 'server/types'
 import MadeBy from 'components/MadeBy'
 
 
-import { serverUrl } from 'utils'
-const socket: Socket = io(serverUrl)
+const socket: Socket = io(import.meta.env.APP_SERVER_URL)
+
 
 const Main = () => {
   const [userName, setUserName] = useAtom(userNameAtom)

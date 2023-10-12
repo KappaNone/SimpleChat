@@ -7,8 +7,7 @@ import MadeBy from 'components/MadeBy'
 import Room from 'components/Room/Room'
 import { room } from 'server/types'
 
-import { serverUrl } from 'utils'
-const socket: Socket = io(serverUrl)
+const socket: Socket = io(import.meta.env.APP_SERVER_URL)
 
 const Rooms = () => {
   const [rooms, setRooms] = useState<room[]>([])
