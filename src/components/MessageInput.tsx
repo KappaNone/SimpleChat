@@ -8,7 +8,9 @@ interface IProps {
   userName: string
 }
 
-const socket: Socket = io('https://simple-chat-server-shrq.onrender.com')
+
+import { serverUrl } from 'utils'
+const socket: Socket = io(serverUrl)
 
 const MessageInput: React.FC<IProps> = ({ roomKey, userName }) => {
   const [inputMessage, setInputMessage] = useState('')

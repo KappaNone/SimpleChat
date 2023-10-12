@@ -8,7 +8,9 @@ import { joinRoomRequest, joinRoomResponse, error } from 'server/types'
 
 import MadeBy from 'components/MadeBy'
 
-const socket: Socket = io('https://simple-chat-server-shrq.onrender.com')
+
+import { serverUrl } from 'utils'
+const socket: Socket = io(serverUrl)
 
 const JoinChat = () => {
   const [roomKey, setRoomKey] = useAtom(roomKeyAtom)

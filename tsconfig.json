@@ -28,7 +28,8 @@
       "components/*": ["components/*"],
       "server/*": ["../server/*"],
       "atoms": ["Atoms"],
-
+      "utils": ["Utils"],
+      
       "Main": ["views/Main/Main"],
       "Rooms": ["views/Rooms/Rooms"],
       "Chat": ["views/Chat/Chat"],

@@ -6,6 +6,7 @@ import Chat from "Chat";
 import JoinChat from "JoinChat";
 
 const App = () => {
+
   return (
     <>
       <Route path="/">
