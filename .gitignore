@@ -24,4 +24,5 @@ dist-ssr
 *.sw?
 .env
 .env.production
-*.lock
+yarn.lock
+.gitignore
