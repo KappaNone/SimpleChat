@@ -21,8 +21,8 @@ interface IProps {
   roomKey: string
 }
 
-import { serverUrl } from 'utils'
-const socket: Socket = io(serverUrl)
+
+const socket: Socket = io(import.meta.env.APP_SERVER_URL)
 
 const Chat: React.FC<IProps> = ({ roomKey }) => {
   const [messages, setMessages] = useState<message[]>([])

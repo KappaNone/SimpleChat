@@ -11,7 +11,6 @@ export default defineConfig({
       components: '/src/components',
       server: '/server',
       atoms: '/src/Atoms',
-      utils: '/src/Utils',
 
       Main: '/src/views/Main/Main',
       Rooms: '/src/views/Rooms/Rooms',
