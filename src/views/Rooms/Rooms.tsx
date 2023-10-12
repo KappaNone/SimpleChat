@@ -7,7 +7,7 @@ import MadeBy from 'components/MadeBy'
 import Room from 'components/Room/Room'
 import { room } from 'server/types'
 
-import { serverUrl } from './../../Utils'
+import { serverUrl } from 'utils'
 const socket: Socket = io(serverUrl)
 
 const Rooms = () => {
