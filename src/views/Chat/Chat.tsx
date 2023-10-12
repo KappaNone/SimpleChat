@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { Socket, io } from 'socket.io-client'
 import { useAtom } from 'jotai'
-import { userNameAtom, usersInRoomAtom, roomKeyAtom } from 'atoms'
-import { useLocation } from 'wouter'
+import { userNameAtom, usersInRoomAtom, /*roomKeyAtom*/ } from 'atoms'
+// import { useLocation } from 'wouter'
 import {
   message,
   joinRoomResponse,
@@ -27,8 +27,8 @@ const Chat: React.FC<IProps> = ({ roomKey }) => {
   const [messages, setMessages] = useState<message[]>([])
   const [userName] = useAtom(userNameAtom)
   const [roomUsers, setRoomUsers] = useAtom(usersInRoomAtom)
-  const [, setRoomKey] = useAtom(roomKeyAtom)
-  const [, setLocation] = useLocation()
+  // const [, setRoomKey] = useAtom(roomKeyAtom)
+  // const [, setLocation] = useLocation()
 
   useEffect(() => {
     socket.emit('join', roomKey)
@@ -37,17 +37,17 @@ const Chat: React.FC<IProps> = ({ roomKey }) => {
     }
   }, [roomKey])
 
-  useEffect(() => {
-    function onLoad() {
-        setRoomKey(roomKey)
-        setLocation('/joinChat')
-      }
+  // useEffect(() => {
+  //   function onLoad() {
+  //       setRoomKey(roomKey)
+  //       setLocation('/joinChat')
+  //     }
     
-    window.addEventListener('load', onLoad)
-    return () => {
-      window.removeEventListener('load', onLoad)
-    }
-  }, [roomKey, setLocation, setRoomKey])
+  //   window.addEventListener('load', onLoad)
+  //   return () => {
+  //     window.removeEventListener('load', onLoad)
+  //   }
+  // }, [roomKey, setLocation, setRoomKey])
 
   useEffect(() => {
     function onBeforeUnload() {
