@@ -42,24 +42,37 @@ function socket() {
 
     socket.on('joinRoom', (joinRoomRequest: joinRoomRequest) => {
       const roomKey = joinRoomRequest.roomKey
+
       const room = rooms[findRoomByKey(rooms, roomKey)]
-      if (room) {
-        socket.join(roomKey)
-        console.log(`User ${joinRoomRequest.userName} joined room: ${roomKey}`)
-        room.users.push(joinRoomRequest.userName)
-
-        const joinRoomResponse: joinRoomResponse = {
-          roomUsers: room.users,
-          roomKey: roomKey,
-          joinedUser: joinRoomRequest.userName,
-        }
-        io.to(roomKey).emit('userJoined', joinRoomResponse)
-
-        io.emit('updateRooms', rooms)
-      } else {
-        socket.emit('roomNotFound', { message: 'Chat not found' })
-        console.log(`Room ${roomKey} not found`)
+      if (!room) {
+        socket.emit('joinError', {
+          message: 'Chat not found',
+          target: 'roomKey',
+        })
+        return
       }
+
+      const userIndex = room.users.indexOf(joinRoomRequest.userName)
+      if (userIndex !== -1) {
+        socket.emit('joinError', {
+          message: 'Username is not unique',
+          target: 'userName',
+        })
+        return
+      }
+
+      socket.join(roomKey)
+      room.users.push(joinRoomRequest.userName)
+      console.log(`User ${joinRoomRequest.userName} joined room: ${roomKey}`)
+
+      const joinRoomResponse: joinRoomResponse = {
+        roomUsers: room.users,
+        roomKey: roomKey,
+        joinedUser: joinRoomRequest.userName,
+      }
+      io.to(roomKey).emit('userJoined', joinRoomResponse)
+
+      io.emit('updateRooms', rooms)
     })
 
     socket.on('join', (roomKey) => {
@@ -87,8 +100,12 @@ function socket() {
             roomKey: leaveRoomRequest.roomKey,
             userName: leaveRoomRequest.userName,
           }
-          socket.to(leaveRoomRequest.roomKey).emit('leaveRoom', leaveRoomResponse)
-          console.log(`User ${leaveRoomRequest.userName} left room: ${leaveRoomRequest.roomKey}`)
+          socket
+            .to(leaveRoomRequest.roomKey)
+            .emit('leaveRoom', leaveRoomResponse)
+          console.log(
+            `User ${leaveRoomRequest.userName} left room: ${leaveRoomRequest.roomKey}`,
+          )
         }
         removeEmptyRooms(rooms, leaveRoomRequest.userName)
         io.emit('updateRooms', rooms)

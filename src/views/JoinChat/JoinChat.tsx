@@ -26,9 +26,14 @@ const JoinChat = () => {
     setLocation(`/chat/${roomKey}`)
   }
 
-  function onRoomNotFound(error: error) {
+  function onError(error: error) {
+    if (error.target === 'roomKey') {
+      setRoomKey('')
+    }
+    if (error.target === 'userName') {
+      setUserName('')
+    }
     setError(error.message)
-    setRoomKey('')
   }
 
   function joinRoom() {
@@ -38,7 +43,7 @@ const JoinChat = () => {
     }
 
     socket.emit('joinRoom', joinRoomRequest)
-    socket.on('roomNotFound', onRoomNotFound)
+    socket.on('joinError', onError)
     socket.on('userJoined', onUserJoined)
   }
 
