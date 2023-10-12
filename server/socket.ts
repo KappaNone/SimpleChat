@@ -1,5 +1,6 @@
 import { io } from './index'
 import { Socket } from 'socket.io'
+import { generateRoomKey, removeEmptyRooms, findRoomByKey } from './utils'
 import {
   createRoomRequest,
   createRoomResponse,
@@ -11,33 +12,7 @@ import {
   message,
 } from './types'
 
-const message: string = ''
-
 const rooms: room[] = []
-
-const generateRoomKey = (): string => {
-  const keyLength = 6
-  const characters =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-  let key = ''
-  for (let i = 0; i < keyLength; i++) {
-    key += characters.charAt(Math.floor(Math.random() * characters.length))
-  }
-  return key
-}
-
-const removeEmptyRooms = (lastUserInRoom: string): void => {
-  for (let i = rooms.length - 1; i >= 0; i--) {
-    if (rooms[i].users.length === 0) {
-      console.log(`Room ${rooms[i].key} has been removed by ${lastUserInRoom}`)
-      rooms.splice(i, 1)
-    }
-  }
-}
-
-function findRoomByKey(roomKey: string): number {
-  return rooms.findIndex((room) => room.key === roomKey)
-}
 
 function socket() {
   io.on('connection', (socket: Socket) => {
@@ -67,7 +42,7 @@ function socket() {
 
     socket.on('joinRoom', (joinRoomRequest: joinRoomRequest) => {
       const roomKey = joinRoomRequest.roomKey
-      const room = rooms[findRoomByKey(roomKey)]
+      const room = rooms[findRoomByKey(rooms, roomKey)]
       if (room) {
         socket.join(roomKey)
         console.log(`User ${joinRoomRequest.userName} joined room: ${roomKey}`)
@@ -98,7 +73,7 @@ function socket() {
     })
 
     socket.on('leaveRoom', (leaveRoomRequest: leaveRoomRequest) => {
-      const room = rooms[findRoomByKey(leaveRoomRequest.roomKey)]
+      const room = rooms[findRoomByKey(rooms, leaveRoomRequest.roomKey)]
 
       if (room) {
         socket.leave(leaveRoomRequest.roomKey)
@@ -112,14 +87,10 @@ function socket() {
             roomKey: leaveRoomRequest.roomKey,
             userName: leaveRoomRequest.userName,
           }
-          socket
-            .to(leaveRoomRequest.roomKey)
-            .emit('leaveRoom', leaveRoomResponse)
-          console.log(
-            `User ${leaveRoomRequest.userName} left room: ${leaveRoomRequest.roomKey}`,
-          )
+          socket.to(leaveRoomRequest.roomKey).emit('leaveRoom', leaveRoomResponse)
+          console.log(`User ${leaveRoomRequest.userName} left room: ${leaveRoomRequest.roomKey}`)
         }
-        removeEmptyRooms(leaveRoomRequest.userName)
+        removeEmptyRooms(rooms, leaveRoomRequest.userName)
         io.emit('updateRooms', rooms)
       }
     })
