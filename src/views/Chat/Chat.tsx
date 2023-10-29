@@ -9,7 +9,7 @@ import {
   message,
   joinRoomResponse,
   leaveRoomRequest,
-  leaveRoomResponse
+  leaveRoomResponse,
 } from 'server/types'
 
 import Message from 'components/Message'
@@ -21,7 +21,6 @@ interface IProps {
 }
 
 const socket: Socket = io(import.meta.env.APP_SERVER_URL)
-
 
 const Chat: React.FC<IProps> = ({ roomKey }) => {
   const [messages, setMessages] = useState<message[]>([])
@@ -39,10 +38,10 @@ const Chat: React.FC<IProps> = ({ roomKey }) => {
 
   useEffect(() => {
     function onLoad() {
-        setRoomKey(roomKey)
-        setLocation('/joinChat')
-      }
-    
+      setRoomKey(roomKey)
+      setLocation('/joinChat')
+    }
+
     window.addEventListener('load', onLoad)
     return () => {
       window.removeEventListener('load', onLoad)

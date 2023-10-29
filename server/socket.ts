@@ -100,7 +100,7 @@ function socket() {
             roomKey: leaveRoomRequest.roomKey,
             userName: leaveRoomRequest.userName,
           }
-          socket
+          socket.broadcast
             .to(leaveRoomRequest.roomKey)
             .emit('leaveRoom', leaveRoomResponse)
           console.log(
