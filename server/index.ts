@@ -7,7 +7,7 @@ const app = express()
 const server = http.createServer(app)
 const PORT = 5000
 
-const devMode = true
+const devMode = false
 
 const clientUrl = devMode
   ? 'http://localhost:5173'
