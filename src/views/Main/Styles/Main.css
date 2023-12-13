@@ -1,6 +1,6 @@
 .container {
   width: 100vw;
-  height: 100vh;
+  height: 100svh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -80,7 +80,7 @@
   border-radius: 3px;
   font-size: 15px;
   font-weight: 600;
-  transition: all 0.1s;
+  transition: all 0.1;
 }
 .container .buttons .createRoom-button {
   background-color: #EF6262;
