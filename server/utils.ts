@@ -20,6 +20,6 @@ export const removeEmptyRooms = (rooms: room[], lastUserInRoom: string): void =>
   }
 }
 
-export function findRoomByKey(rooms: room[], roomKey: string): number {
+export const findRoomByKey = (rooms: room[], roomKey: string): number => {
   return rooms.findIndex((room) => room.key === roomKey)
 }

@@ -1,50 +1,50 @@
-export interface createRoomRequest {
+export type createRoomRequest = {
   userName: string
   roomVisibility: boolean
 }
 
-export interface createRoomResponse {
+export type createRoomResponse = {
   userName: string
   roomKey: string
 }
 
-export interface joinRoomRequest {
+export type joinRoomRequest = {
   roomKey: string
   userName: string
 }
 
-export interface joinRoomResponse {
+export type joinRoomResponse = {
   roomUsers: string[]
   roomKey: string
   joinedUser: string
 }
 
-export interface leaveRoomRequest {
+export type leaveRoomRequest = {
   userName: string
   roomUsers: string[]
   roomKey: string
 }
 
-export interface leaveRoomResponse {
+export type leaveRoomResponse = {
   userName: string
   roomUsers: string[]
   roomKey: string
 }
 
-export interface room {
+export type room = {
   key: string
   users: string[]
   visibility: boolean
 }
 
-export interface message {
+export type message = {
   roomKey: string
   text: string
   sender: string
   time: string
 }
 
-export interface error {
+export type error = {
   message: string
   target: string
 }

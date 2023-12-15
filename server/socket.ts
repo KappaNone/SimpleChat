@@ -4,8 +4,8 @@ import { generateRoomKey, removeEmptyRooms, findRoomByKey } from './utils'
 import {
   createRoomRequest,
   createRoomResponse,
-  joinRoomResponse,
   joinRoomRequest,
+  joinRoomResponse,
   leaveRoomRequest,
   leaveRoomResponse,
   room,
