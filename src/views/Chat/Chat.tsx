@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { Socket, io } from 'socket.io-client'
 import { useAtom } from 'jotai'
-import { userNameAtom, usersInRoomAtom, roomKeyAtom } from 'atoms'
-import { useLocation } from 'wouter'
+import { userNameAtom, usersInRoomAtom } from 'atoms'
+
 import {
   message,
   joinRoomResponse,
@@ -15,7 +15,7 @@ import {
 import Message from 'components/Message'
 import MessageInput from 'components/MessageInput'
 import RoomUser from 'components/RoomUser'
-
+import HackyChatId from 'components/HackyChatId'
 interface IProps {
   roomKey: string
 }
@@ -26,8 +26,6 @@ const Chat: React.FC<IProps> = ({ roomKey }) => {
   const [messages, setMessages] = useState<message[]>([])
   const [userName] = useAtom(userNameAtom)
   const [roomUsers, setRoomUsers] = useAtom(usersInRoomAtom)
-  const [, setRoomKey] = useAtom(roomKeyAtom)
-  const [, setLocation] = useLocation()
 
   useEffect(() => {
     socket.emit('join', roomKey)
@@ -35,18 +33,6 @@ const Chat: React.FC<IProps> = ({ roomKey }) => {
       socket.emit('join', roomKey)
     }
   }, [roomKey])
-
-  useEffect(() => {
-    function onLoad() {
-      setRoomKey(roomKey)
-      setLocation('/joinChat')
-    }
-
-    window.addEventListener('load', onLoad)
-    return () => {
-      window.removeEventListener('load', onLoad)
-    }
-  }, [roomKey, setLocation, setRoomKey])
 
   useEffect(() => {
     function onBeforeUnload() {
@@ -110,7 +96,9 @@ const Chat: React.FC<IProps> = ({ roomKey }) => {
     <>
       <Toaster />
       <div className="leftSide">
-        <h1 className="chatID">ChatID: {roomKey}</h1>
+        <HackyChatId className="chatID" chatId={roomKey}>
+          ChatID:{' '}
+        </HackyChatId>
         <div className="userList">
           {roomUsers?.map((user, index) => (
             <RoomUser userName={userName} user={user} key={index}></RoomUser>
